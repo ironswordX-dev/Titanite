@@ -12,3 +12,6 @@ This extension:
 - Fixes functionality of some Google logins on webpages
 
 *Note: You can exit fullscreen videos by pressing ctrl+T after you've set up the shortcuts*
+
+QoL improvement credits:
+- [Ant-Throw-Pology](https://github.com/Ant-Throw-Pology) (i tweaked it a little to reuse the if statement value)
