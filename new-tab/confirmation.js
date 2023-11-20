@@ -11,4 +11,4 @@ function Confirm(accept, deny) {
     box.appendChild(denyBtn);
     document.body.appendChild(callback);
 }
-export default Confirm
+export { Confirm } 

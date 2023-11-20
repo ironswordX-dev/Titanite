@@ -4,7 +4,7 @@ import BatteryDisplay from "./battery-display.js";
 import DateDisplay from "./date-display.js";
 import TimeDisplay from "./time-display.js";
 import BackgroundController from "./background-controller.js";
-import Confirm from "./confirmation.js";
+import { Confirm as confirmd } from "./confirmation.js";
 
 const NEW_TAB_URL = "chrome://new-tab-page";
 const FILES_URL = "chrome://file-manager";
@@ -67,7 +67,7 @@ reset.addEventListener('click', () => {
     }
 })
 osSettings.addEventListener('click', () => {
-    Confirm(alert('testing rn'))
+    confirmd(() => {alert('testing')}, () => {alert('testing')})
 })
 
 new DragController(move);
