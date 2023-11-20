@@ -18,20 +18,27 @@ class BatteryDisplay {
             this.getPercentMessage(battery),
             this.getChargingMessage(battery),
             this.getTimeMessage(battery)
-        ].join(" ~ ");
+        ].filter(v => typeof v !== "undefined").join(" ~ ");
     }
 
+    get isBatteryFull() {
+        return (battery.charging && Math.min(battery.chargingTime, battery.dischargingTime)) == Infinity;
+    }
     getPercentMessage(battery) {
+        if (this.isBatteryFull) return "Battery Full"
         return `Battery: ${Math.round(battery.level * 100)}%`
     }
 
     getChargingMessage(battery) {
+        if (this.isBatteryFull) return;
         return battery.charging ? "Charging" : "Not charging"
     }
 
     getTimeMessage(battery) {
         let secsLeft = Math.min(battery.chargingTime, battery.dischargingTime)
         let direction = battery.charging ? "full" : "empty"
+
+        if (this.isBatteryFull) return;
 
         let hoursLeft = Math.floor(secsLeft / 3600)
         let minsLeft = Math.floor(secsLeft % 3600 / 60);
