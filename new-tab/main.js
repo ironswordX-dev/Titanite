@@ -4,7 +4,7 @@ import BatteryDisplay from "./battery-display.js";
 import DateDisplay from "./date-display.js";
 import TimeDisplay from "./time-display.js";
 import BackgroundController from "./background-controller.js";
-import { Confirm as confirmd } from "./confirmation.js";
+import { list as AltList } from "./image-alts.js";
 
 const NEW_TAB_URL = "chrome://new-tab-page";
 const FILES_URL = "chrome://file-manager";
@@ -20,10 +20,13 @@ let [
     addAccount,
     move,
     fullscreen,
-    osSettings,
     colorChange,
     reset
 ] = document.querySelectorAll('svg')
+
+document.querySelectorAll('svg').forEach((element, idx) => {
+    element.setAttribute("alt", AltList[idx])
+})
 
 let version = document.querySelector('.version')
 let date = document.querySelector('.date')
@@ -65,9 +68,6 @@ reset.addEventListener('click', () => {
         localStorage.clear()
         chrome.runtime.reload()
     }
-})
-osSettings.addEventListener('click', () => {
-    confirmd(() => {alert('testing')}, () => {alert('testing')})
 })
 
 new DragController(move);
