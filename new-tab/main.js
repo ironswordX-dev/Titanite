@@ -20,9 +20,9 @@ let [
     addAccount,
     move,
     fullscreen,
+    osSettings,
     colorChange,
-    reset,
-    osSettings
+    reset
 ] = document.querySelectorAll('svg')
 
 let version = document.querySelector('.version')
