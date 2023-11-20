@@ -97,3 +97,17 @@ body.black-text {
 body.black-text svg {
   filter: brightness(0);
 }
+
+.confirmationPopup {
+  background-color: grey;
+  color: white;
+  border-color: grey;
+  border-radius: 15px;
+}
+
+.confirmationPopup button {
+  filter: brightness(50%)
+}
+.confirmationPopup button:hover {
+  filter: brightness(100%)
+}

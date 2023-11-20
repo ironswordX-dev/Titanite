@@ -19,4 +19,4 @@ class DateDisplay {
     }
 }
 
-export { DateDisplay }
+export default DateDisplay

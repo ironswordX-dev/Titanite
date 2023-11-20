@@ -1,9 +1,10 @@
-import { DragController } from "./drag-controller.js";
-import { FullscreenController } from "./fullscreen-controller.js";
-import { BatteryDisplay } from "./battery-display.js";
-import { DateDisplay } from "./date-display.js";
-import { TimeDisplay } from "./time-display.js";
-import { BackgroundController } from "./background-controller.js";
+import DragController from "./drag-controller.js";
+import FullscreenController from "./fullscreen-controller.js";
+import BatteryDisplay from "./battery-display.js";
+import DateDisplay from "./date-display.js";
+import TimeDisplay from "./time-display.js";
+import BackgroundController from "./background-controller.js";
+import Confirm from "./confirmation.js";
 
 const NEW_TAB_URL = "chrome://new-tab-page";
 const FILES_URL = "chrome://file-manager";
@@ -20,7 +21,8 @@ let [
     move,
     fullscreen,
     colorChange,
-    reset
+    reset,
+    osSettings
 ] = document.querySelectorAll('svg')
 
 let version = document.querySelector('.version')
@@ -63,6 +65,9 @@ reset.addEventListener('click', () => {
         localStorage.clear()
         chrome.runtime.reload()
     }
+})
+osSettings.addEventListener('click', () => {
+    Confirm(alert('testing rn'))
 })
 
 new DragController(move);

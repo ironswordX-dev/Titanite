@@ -56,4 +56,4 @@ class BatteryDisplay {
     }
 }
 
-export { BatteryDisplay }
+export default BatteryDisplay
