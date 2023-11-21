@@ -42,14 +42,50 @@ class BatteryDisplay {
 
         let hoursLeft = Math.floor(secsLeft / 3600)
         let minsLeft = Math.floor(secsLeft % 3600 / 60);
-        minsLeft = String(minsLeft).padStart(2, 0) // 8:9 to 8:09 etc
+        minsLeft = Number(String(minsLeft).padStart(2, 0) /* 8:9 to 8:09 etc */ );
 
-        if (hoursLeft === Infinity) hoursLeft = "--";
-        if (minsLeft === Infinity || minsLeft === "NaN") minsLeft = "--";
+        // default values to null
+        if (hoursLeft === Infinity) hoursLeft = null;
+        if (minsLeft === Infinity || minsLeft === "NaN") minsLeft = null;
 
-        minsLeft = Number(minsLeft) === 0 || minsLeft === "--" ? "left" : `and ${minsLeft} minutes left`
+        //hoursLeft = Number(hoursLeft) === 0 ? hoursLeft = null : hoursleft = ` ${hoursLeft} hours `;
+        //minsLeft = Number(minsLeft) === 0 || minsLeft === "--" ? "left" : `and ${minsLeft} minutes left`
 
-        return `Around ${hoursLeft} hours ${minsLeft} until ${direction}`
+        // i know, this code is messy but it works at least
+        let hoursLeftNumb = hoursLeft;
+        if (hoursLeft !== "--") {
+            switch(true) {
+                case hoursLeft == 0:
+                    hoursLeft = null;
+                    break;
+                case hoursLeft > 0:
+                    hoursLeft = ` ${hoursLeft} hours`;
+                    break;
+            }
+        }
+        if (minsLeft !== "--") {
+            switch(true) {
+                case minsLeft == 0:
+                    minsLeft = null;
+                    break;
+                case minsLeft > 0 && hoursLeftNumb > 0:
+                    minsLeft = `and ${minsLeft} minutes`;
+                    break;
+                case minsLeft > 0 && !(hoursLeftNumb > 0):
+                    minsLeft = `${minsLeft} minutes`;
+                    break;
+            }
+        }
+
+        if (!(hoursLeft === null || hoursLeft === NaN) && !(minsLeft === null)) {
+            return `Around ${hoursLeft} ${minsLeft} left until battery is ${direction}`
+        } else if (!(hoursLeft === null)) {
+            return `Around ${hoursLeft} left until battery is ${direction}`
+        } else if (!(minsLeft === null)) {
+            return `Around ${minsLeft} left until battery is ${direction}`
+        } else {
+            return 'Waiting on battery info...'
+        }
     }
 
     async listenForUpdates() {
