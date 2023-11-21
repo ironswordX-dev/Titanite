@@ -6,11 +6,21 @@ import TimeDisplay from "./time-display.js";
 import BackgroundController from "./background-controller.js";
 import { list as AltList } from "./image-alts.js";
 
+/*
 const NEW_TAB_URL = "chrome://new-tab-page";
 const FILES_URL = "chrome://file-manager";
 const HELP_URL = "https://github.com/bypassiwastaken/skiovox-helper";
 const WEBSTORE_URL = "https://chromewebstore.google.com";
 const ADDSESSION_URL = "https://accounts.google.com/signin/v2/identifier?hl=en&continue=https%3A%2F%2Fwww.google.com%2F&ec=GAlAmgQ&flowName=GlifWebSignIn&flowEntry=AddSession";
+*/
+import { url } from "../urls.js";
+const {
+    NEW_TAB_URL,
+    FILES_URL,
+    HELP_URL,
+    WEBSTORE_URL,
+    ADDSESSION_URL
+} = url;
 
 let [
     theme,
